@@ -14,12 +14,15 @@ end_dates = end_dates + ["2021-02-18"]
 
 # dict of the name for the output file and then query string for Yahoo Finance
 tickers = {
+    "USDCNY": "USDCNY=X",    
+    "USDEUR": "EUR=X",    
     "SP500": "^GSPC",
-    "AX200": "^AXJO",
-    "AUDUSD": "AUDUSD=X",
-    "AUDCNY": "AUDCNY=X",
-    "AUDJPN": "AUDJPY=X",
-    "AUDEUR": "AUDEUR=X",
+    "DJI": "^DJI",
+    "MERV": "^MERV",
+    "AAPL": "AAPL",
+    "AMZN": "AMZN", 
+    "GGAL": "GGAL",
+    "TNX": "^TNX"
 }
 
 
