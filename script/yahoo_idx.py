@@ -5,11 +5,11 @@ import yfinance as yf
 import os
 
 # intialize the years, pull will be run by year just in case
-start_dates = [str(i) + "-01-01" for i in range(2007, 2022)]
-end_dates = [str(i) + "-01-01" for i in range(2007, 2023)]
+start_dates = [str(i) + "-01-01" for i in range(2008, 2023)]
+end_dates = [str(i) + "-01-01" for i in range(2008, 2023)]
 
 # add odd ones on the beginning and end
-start_dates = ["2006-05-16"] + start_dates
+start_dates = ["2007-11-01"] + start_dates
 end_dates = end_dates + ["2022-11-01"]
 
 # dict of the name for the output file and then query string for Yahoo Finance
