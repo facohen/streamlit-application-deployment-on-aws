@@ -79,7 +79,7 @@ aws cloudformation --region ${AWS_DEFAULT_REGION} create-stack \
 --template-body file://./sagemaker-dashboards-for-ml/packaged.yaml \
 --capabilities CAPABILITY_IAM \
 --parameters ParameterKey=ResourceName,ParameterValue=streamlit-dashboard-cfn-resource \
-ParameterKey=SageMakerNotebookGitRepository,ParameterValue=https://github.com/aws-samples/streamlit-application-deployment-on-aws.git \
+ParameterKey=SageMakerNotebookGitRepository,ParameterValue=https://github.com/facohen/streamlit-application-deployment-on-aws.git \
 ParameterKey=CognitoAuthenticationSampleUserEmail,ParameterValue=${COGNITO_USER}  --disable-rollback > /dev/null
 
 echo "Writing environment variables to the config file for the streamlit-package"
