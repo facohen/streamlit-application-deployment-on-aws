@@ -14,7 +14,7 @@ from config import REGION, BUCKET, DATABASE, TABLE, INDEX_COLUMN_NAME
 @st.cache
 def query_database(
     table_name: str,
-    date_range: tuple = ("2006-05-01", "2021-02-28"),
+    date_range: tuple = ("2007-01-01", "2022-11-01"),
     index_colname: str = INDEX_COLUMN_NAME,
     database: str = DATABASE,
     region: str = REGION,
@@ -78,15 +78,15 @@ def set_date_range() -> list:
     Returns:
         list: ["2006-05-1", "2021-02-28"]
     """
-    st.sidebar.write("## Date Range")
-    default_date_range = [datetime.date(2006, 5, 1), datetime.date.today()]
+    st.sidebar.write("## Intervalo Fechas")
+    default_date_range = [datetime.date(2007, 1, 1), datetime.date.today()]
     date_range = st.sidebar.date_input(
         "Selector",
         value=default_date_range,
-        min_value=datetime.date(2006, 5, 1),
+        min_value=datetime.date(2007, 1, 1),
         max_value=datetime.date.today(),
     )
-    if st.sidebar.button("Reset Date Range"):
+    if st.sidebar.button("Reset Intervalo Fechas"):
         date_range = default_date_range
     date_range = list(date_range)
     date_range.sort()
@@ -119,13 +119,13 @@ def plot_market_index(
     assert len(date_range) == 2
     date_range = [date.strftime("%Y-%m-%d") for date in date_range]
     partitions = get_partitions(table_name)
-    partition = st.sidebar.selectbox("Choose Index", partitions.values[:, 0])
+    partition = st.sidebar.selectbox("Elija index", partitions.values[:, 0])
     df_mkt_idx = query_database(table_name, date_range=date_range, key_word=partition)
 
     column_name_num = list(df_mkt_idx.select_dtypes(include=["number"]).columns)
 
     columns_selected = st.sidebar.multiselect(
-        "Choose Columns", column_name_num, column_name_num[0]
+        "Elija columnas", column_name_num, column_name_num[0]
     )
 
     df_vis = df_mkt_idx[columns_selected]
@@ -144,10 +144,10 @@ def plot_market_index(
     upper = base_chart_top.properties(
         width=600, height=400, title=f"{partition}"
     ).encode(alt.X(f"{index_col_name}:T", scale=alt.Scale(domain=brush)))
-    lower = base_chart_down.properties(width=600, height=90).add_selection(brush)
+    lower = base_chart_down.properties(width=600, height=120).add_selection(brush)
     st.altair_chart(upper & lower, use_container_width=True)
 
-    if st.checkbox("Show DataFrame"):
+    if st.checkbox("Mostrar tabla"):
         st.write(df_mkt_idx)
         st.markdown(get_table_download_link(df_mkt_idx), unsafe_allow_html=True)
 
@@ -157,7 +157,7 @@ def plot_market_index(
 def to_excel(df: pd.DataFrame):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine="xlsxwriter")
-    df.to_excel(writer, sheet_name="Sheet1")
+    df.to_excel(writer, sheet_name="Market_Index")
     writer.save()
     processed_data = output.getvalue()
     return processed_data
@@ -166,7 +166,7 @@ def to_excel(df: pd.DataFrame):
 def get_table_download_link(df: pd.DataFrame) -> str:
     val = to_excel(df)
     b64 = base64.b64encode(val)
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="dataframe.xlsx">Download csv file</a>'  # decode b'abc' => abc
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="dataframe.xlsx">Descargar archivo csv</a>'  # decode b'abc' => abc
 
 
 if __name__ == "__main__":
