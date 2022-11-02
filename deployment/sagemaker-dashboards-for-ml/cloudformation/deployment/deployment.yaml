@@ -404,10 +404,10 @@ Resources:
             - ContainerPort: 80
               HostPort: 80
               Protocol: "tcp"
-      Cpu: "1024"
+      Cpu: "256"
       ExecutionRoleArn: !GetAtt ECSTaskExecutionIAMRole.Arn
       Family: !Sub "${ResourceName}"
-      Memory: "2048"
+      Memory: "512"
       NetworkMode: "awsvpc"
       RequiresCompatibilities:
         - "FARGATE"

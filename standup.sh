@@ -12,7 +12,7 @@ GLUE_CRAWLER_NAME=${stack_name}-glue-cralwer
 TABLE_NAME=$(echo ${S3_BUCKET_NAME} | tr - _)
 
 # Coginto user paramater
-COGNITO_USER=XYZ@XYZ.com
+COGNITO_USER=c.federico@gmail.com
 
 echo "stack name=${stack_name}"
 echo "bucket name=${S3_BUCKET_NAME}" 

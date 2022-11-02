@@ -1,9 +1,9 @@
 #!/bin/bash
 
-athena_stack_name="athena_name"
-glue_stack_name="glue_name"
-syd_stack_name="syd_name"
-S3_BUCKET_NAME="your_s3_bucket_name"
+athena_stack_name="streamlit-dashboard-athena"
+glue_stack_name="streamlit-dashboard-glue"
+syd_stack_name="streamlit-dashboard-syd"
+S3_BUCKET_NAME="streamlit-dashboard-85c08ed05189"
 
 echo "deleting ${athena_stack_name}"
 aws cloudformation delete-stack --stack-name ${athena_stack_name} > /dev/null
