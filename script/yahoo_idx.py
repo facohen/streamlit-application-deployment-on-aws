@@ -68,7 +68,7 @@ def write_data(data: Dict[str, pd.DataFrame], start_date: str, end_date: str) ->
         data (Dict[str, pd.DataFrame]): Dictionary of raw data as dataframe objects
         with the ticker filename as the key
         start_date (str): date for pull range to start
-        end_date (str): date for pull range to end
+        end_date (str): date for pull range to end it
     Raises:
         KeyError: When file fails to write
     """
